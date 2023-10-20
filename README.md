@@ -7,3 +7,4 @@
 - [ ] database migration
 - [ ] route api
 - [ ] frotend form
+- [ ] admin
