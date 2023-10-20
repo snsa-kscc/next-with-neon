@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import NavMenu from "./components/NavMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,9 +16,14 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <SessionProvider>
-        <body className={inter.className}>{children}</body>
-      </SessionProvider>
+      <body className={inter.className}>
+        <SessionProvider>
+          <main className="mx-auto max-w-5xl text-2xl flex gap-4">
+            <NavMenu />
+            {children}
+          </main>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
