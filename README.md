@@ -6,4 +6,4 @@
 - [ ] database schema
 - [ ] database migration
 - [ ] route api
-- [ ] form
+- [ ] frotend form
