@@ -1,16 +1,12 @@
-// import { getServerSession } from "next-auth";
-"use client";
-
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-export default function Dashboard() {
-  // const session = await getServerSession();
-  const { data: session } = useSession();
+export default async function Dashboard() {
+  const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
-    // redirect("/api/auth/signin");
-    return <div>You must be signed in</div>;
+    redirect("/api/auth/signin");
   }
   return (
     <div>

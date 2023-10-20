@@ -1,12 +1,13 @@
 import NextAuth from "next-auth";
-import Email from "next-auth/providers/email";
+import EmailProvider from "next-auth/providers/email";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/db/client";
+import { NextAuthOptions } from "next-auth";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),
   providers: [
-    Email({
+    EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST,
         port: Number(process.env.EMAIL_SERVER_PORT),
@@ -18,6 +19,7 @@ const handler = NextAuth({
       from: process.env.EMAIL_FROM,
     }),
   ],
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
