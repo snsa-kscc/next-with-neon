@@ -19,7 +19,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          <main className="mx-auto max-w-5xl text-2xl flex gap-4">
+          <main className="mx-auto max-w-5xl text-2xl flex gap-4 p-20">
             <NavMenu />
             {children}
           </main>
