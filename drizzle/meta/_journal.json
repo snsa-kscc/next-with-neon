@@ -8,6 +8,83 @@
       "when": 1697684822492,
       "tag": "0000_great_brother_voodoo",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1697841961545,
+      "tag": "0001_flaky_hydra",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1697847372644,
+      "tag": "0002_redundant_swordsman",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1697848837913,
+      "tag": "0003_curly_sinister_six",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1697851397631,
+      "tag": "0004_gray_rage",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1697851571359,
+      "tag": "0005_peaceful_supernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1697852053497,
+      "tag": "0006_sturdy_jack_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1697852587730,
+      "tag": "0007_common_dark_beast",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1697852906242,
+      "tag": "0008_clear_pretty_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1697853137759,
+      "tag": "0009_cute_marvel_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1697853370726,
+      "tag": "0010_grey_titanium_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1697853960436,
+      "tag": "0011_first_skrulls",
+      "breakpoints": true
     }
   ]
 }

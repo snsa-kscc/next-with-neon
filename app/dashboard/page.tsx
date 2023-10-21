@@ -11,6 +11,7 @@ export default async function Dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
+      {!session.user.name ? <p>What is your name?</p> : null}
     </div>
   );
 }

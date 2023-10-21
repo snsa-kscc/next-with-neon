@@ -1,4 +1,4 @@
-import { timestamp, pgTable, text, primaryKey, integer } from "drizzle-orm/pg-core";
+import { timestamp, pgTable, text, primaryKey, integer, boolean } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 
 export const users = pgTable("user", {
@@ -48,5 +48,20 @@ export const verificationTokens = pgTable(
   },
   (vt) => ({
     compoundKey: primaryKey(vt.identifier, vt.token),
+  })
+);
+
+export const receipes = pgTable(
+  "recipe",
+  {
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    description: text("description").notNull(),
+    createdAt: timestamp("createdAt", { mode: "date" }).notNull(),
+    active: boolean("active").default(false),
+  },
+  (recipe) => ({
+    compoundKey: primaryKey(recipe.userId, recipe.description),
   })
 );

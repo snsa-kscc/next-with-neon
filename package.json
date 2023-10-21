@@ -10,7 +10,7 @@
     "db:generate": "drizzle-kit generate:pg",
     "db:push": "drizzle-kit push:pg",
     "db:introspect": "drizzle-kit introspect:pg",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio --verbose"
   },
   "dependencies": {
     "@auth/core": "^0.17.0",

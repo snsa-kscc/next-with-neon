@@ -1,0 +1,1 @@
+ALTER TABLE "recipe" ADD CONSTRAINT "recipe_userId_createdAt" PRIMARY KEY("userId","createdAt");
