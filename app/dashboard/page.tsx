@@ -13,7 +13,7 @@ export default async function Dashboard() {
     <div>
       <h1>Dashboard</h1>
       {!session.user.name ? <p>What is your name?</p> : null}
-      <QuestionForm banana={session.user.name} />
+      <QuestionForm user={session.user.name} />
     </div>
   );
 }

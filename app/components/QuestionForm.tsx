@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useState } from "react";
-function QuestionForm({ banana }: { banana: string }) {
+
+function QuestionForm({ user }: { user: string }) {
   const [data, setData] = useState();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -13,7 +14,16 @@ function QuestionForm({ banana }: { banana: string }) {
     const data = await fetch("/api/users", {
       method: "POST",
       body: JSON.stringify(formDataObject),
-    }).then((res) => res.json());
+    })
+      .then((res: any) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     setData(data);
     form.reset();
@@ -21,9 +31,9 @@ function QuestionForm({ banana }: { banana: string }) {
 
   return (
     <div>
-      <h1>QuestionForm {banana}</h1>
+      <h1>QuestionForm - {user}</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" className="text-red-800" name="name" required />
+        <input type="text" className="text-red-800" name="description" required />
         <button>Submit</button>
       </form>
       <pre>{JSON.stringify(data, null, 2)}</pre>
