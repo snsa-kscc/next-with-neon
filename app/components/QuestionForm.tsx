@@ -1,8 +1,10 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 function QuestionForm({ user }: { user: string }) {
   const [data, setData] = useState();
+  const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -27,6 +29,7 @@ function QuestionForm({ user }: { user: string }) {
 
     setData(data);
     form.reset();
+    router.refresh();
   }
 
   return (
