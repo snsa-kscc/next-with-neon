@@ -1,5 +1,6 @@
-import { timestamp, pgTable, text, primaryKey, integer, boolean } from "drizzle-orm/pg-core";
+import { timestamp, pgTable, text, primaryKey, integer, boolean, serial } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -54,6 +55,7 @@ export const verificationTokens = pgTable(
 export const receipes = pgTable(
   "recipe",
   {
+    id: serial("id").notNull(),
     userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
@@ -65,3 +67,14 @@ export const receipes = pgTable(
     compoundKey: primaryKey(recipe.userId, recipe.description),
   })
 );
+
+export const userRelations = relations(users, ({ many }) => ({
+  receipes: many(receipes),
+}));
+
+export const recipeRelations = relations(receipes, ({ one }) => ({
+  user: one(users, {
+    fields: [receipes.userId],
+    references: [users.id],
+  }),
+}));

@@ -15,12 +15,24 @@ export default async function Dashboard() {
 
   const result = await db.select().from(receipes);
 
+  const res = await db.query.users.findFirst({
+    with: {
+      receipes: true,
+    },
+  });
+
   return (
     <div>
       <h1>Dashboard</h1>
       {!session.user.name ? <p>What is your name?</p> : null}
       <QuestionForm user={session.user.name} />
-      <div>{JSON.stringify(result)}</div>
+      <div className="p-8">
+        {result.map((receipe) => (
+          <div key={receipe.createdAt.toString()}>
+            <p>{receipe.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
