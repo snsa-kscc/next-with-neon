@@ -3,8 +3,13 @@
 ## 2DO
 
 - [x] auth
-- [ ] database schema
-- [ ] database migration
-- [ ] route api
-- [ ] frotend form
-- [ ] admin
+- [x] database schema
+- [x] database migration
+- [x] route api
+- [x] frotend form
+- [x] admin
+- [ ] route api error handling
+- [ ] internationalization
+- [ ] admin select all posts part
+- [ ] ask for name
+- [ ] admin assignment
