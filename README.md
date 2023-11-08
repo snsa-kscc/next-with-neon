@@ -11,5 +11,5 @@
 - [ ] route api error handling
 - [ ] internationalization
 - [ ] admin select all posts part
-- [ ] ask for name
+- [x] ask for name
 - [ ] admin assignment

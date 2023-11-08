@@ -4,19 +4,14 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 import { db } from "@/db";
 import { eq } from "drizzle-orm";
-import { users, receipes } from "@/db/schema";
+import { users } from "@/db/schema";
 
 export async function POST(request: Request) {
-  const data: { description: string } = await request.json();
-  const session: { user: { email: string } } | null = await getServerSession(authOptions);
+  const data: { name: string } = await request.json();
 
-  const userId: { id: string }[] = await db.selectDistinct({ id: users.id }).from(users).where(eq(users.email, session?.user.email!));
+  const session = await getServerSession(authOptions);
 
-  await db.insert(receipes).values({
-    userId: userId[0].id,
-    description: data.description,
-    createdAt: new Date(),
-  });
+  await db.update(users).set({ name: data.name }).where(eq(users.id, session?.user.id!));
 
   return Response.json(data);
 }

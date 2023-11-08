@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, use, useState } from "react";
 
-function QuestionForm({ user }: { user: string }) {
+function NameForm() {
   const [data, setData] = useState();
   const router = useRouter();
 
@@ -13,7 +13,7 @@ function QuestionForm({ user }: { user: string }) {
     const formData = new FormData(form);
     const formDataObject = Object.fromEntries(formData);
 
-    const data = await fetch("/api/posts", {
+    const data = await fetch("/api/users", {
       method: "POST",
       body: JSON.stringify(formDataObject),
     })
@@ -34,9 +34,9 @@ function QuestionForm({ user }: { user: string }) {
 
   return (
     <div>
-      <h1>QuestionForm - {user}</h1>
+      <h1>NameForm</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" className="text-red-800" name="description" required />
+        <input type="text" className="text-red-800" name="name" required />
         <button>Submit</button>
       </form>
       <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -44,4 +44,4 @@ function QuestionForm({ user }: { user: string }) {
   );
 }
 
-export default QuestionForm;
+export default NameForm;
