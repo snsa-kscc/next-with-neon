@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
@@ -21,11 +20,13 @@ export async function POST(request: Request) {
   return Response.json(data);
 }
 
-export async function DELETE(request: NextRequest) {
-  const data1 = request.nextUrl.searchParams.get("query");
-  const data2 = new URL(request.url).searchParams.get("query");
+export async function DELETE(request: Request) {
+  const queryParam = new URL(request.url).searchParams.get("query");
+  const data = parseInt(queryParam!);
 
-  return Response.json({ status: "deleted" });
+  const deletedUser = await db.delete(receipes).where(eq(receipes.id, data)).returning();
+
+  return Response.json(deletedUser);
 }
 
 export async function PUT() {}
