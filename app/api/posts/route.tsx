@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
@@ -20,3 +20,12 @@ export async function POST(request: Request) {
 
   return Response.json(data);
 }
+
+export async function DELETE(request: NextRequest) {
+  const data1 = request.nextUrl.searchParams.get("query");
+  const data2 = new URL(request.url).searchParams.get("query");
+
+  return Response.json({ status: "deleted" });
+}
+
+export async function PUT() {}
