@@ -10,6 +10,6 @@
 - [x] admin
 - [ ] route api error handling
 - [ ] internationalization
-- [ ] admin select all posts part
+- [x] admin select all posts part
 - [x] ask for name
 - [ ] admin assignment
