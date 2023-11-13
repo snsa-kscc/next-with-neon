@@ -29,4 +29,12 @@ export async function DELETE(request: Request) {
   return Response.json(deletedUser);
 }
 
-export async function PUT() {}
+export async function PATCH(request: Request) {
+  const queryParamString = new URL(request.url).searchParams.get("query");
+  const data: { active: boolean } = await request.json();
+  const queryParam = parseInt(queryParamString!);
+
+  const result = await db.update(receipes).set({ active: data.active }).where(eq(receipes.id, queryParam)).returning();
+
+  return Response.json(result);
+}

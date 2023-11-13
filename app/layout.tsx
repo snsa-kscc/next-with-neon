@@ -17,9 +17,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className + " dark"}>
         <SessionProvider session={session}>
-          <main className="mx-auto max-w-5xl text-2xl flex gap-4 p-20">
+          <main className="mx-auto max-w-screen-2xl text-2xl flex gap-12 p-20">
             <NavMenu />
             {children}
           </main>

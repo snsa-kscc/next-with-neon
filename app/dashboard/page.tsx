@@ -23,7 +23,7 @@ export default async function Dashboard() {
   });
 
   return (
-    <div>
+    <div className="flex-grow">
       <h1>Dashboard</h1>
       {!session.user.name ? (
         <div>
@@ -35,12 +35,10 @@ export default async function Dashboard() {
       <QuestionForm user={session.user.name} />
       <div className="p-8">
         {result.map((item) => (
-          <div className="flex flex-col" key={item.recipe.createdAt.toString()}>
-            <p>
-              {item.recipe.description} by {item.user.name} -
-            </p>
+          <div className="flex p-2 justify-around" key={item.recipe.createdAt.toString()}>
+            <p>{item.recipe.description}</p>
+            <p>{item.user.name}</p>
             <p title={`${item.recipe.createdAt}`}>{formatTimeAgo(item.recipe.createdAt)}</p>
-            <hr />
           </div>
         ))}
       </div>
