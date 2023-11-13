@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 interface User {
   id: string;

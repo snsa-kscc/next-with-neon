@@ -6,18 +6,22 @@ import { eq } from "drizzle-orm";
 import { users, receipes } from "@/db/schema";
 
 export async function POST(request: Request) {
-  const data: { description: string } = await request.json();
-  const session: { user: { email: string } } | null = await getServerSession(authOptions);
+  try {
+    const data: { description: string } = await request.json();
+    const session: { user: { email: string } } | null = await getServerSession(authOptions);
 
-  const userId: { id: string }[] = await db.selectDistinct({ id: users.id }).from(users).where(eq(users.email, session?.user.email!));
+    const userId: { id: string }[] = await db.selectDistinct({ id: users.id }).from(users).where(eq(users.email, session?.user.email!));
 
-  await db.insert(receipes).values({
-    userId: userId[0].id,
-    description: data.description,
-    createdAt: new Date(),
-  });
+    await db.insert(receipes).values({
+      userId: userId[0].id,
+      description: data.description,
+      createdAt: new Date(),
+    });
 
-  return Response.json(data);
+    return Response.json({ status: "ok", message: data });
+  } catch (error) {
+    return Response.json({ status: "not ok", message: error });
+  }
 }
 
 export async function DELETE(request: Request) {

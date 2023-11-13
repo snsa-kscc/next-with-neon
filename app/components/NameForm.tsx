@@ -21,7 +21,7 @@ function NameForm() {
         if (res.ok) {
           return res.json();
         }
-        throw new Error("Something went wrong");
+        throw new Error(res.statusText);
       })
       .catch((e: Error) => {
         console.log(e.message);
