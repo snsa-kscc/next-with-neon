@@ -6,7 +6,7 @@ import NameForm from "../components/NameForm";
 
 import { db } from "@/db";
 import { receipes, users } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { formatTimeAgo } from "@/utils/formatTimeAgo";
 
 export default async function Dashboard() {
@@ -16,7 +16,7 @@ export default async function Dashboard() {
     redirect("/api/auth/signin");
   }
 
-  const result = await db.select().from(receipes).innerJoin(users, eq(receipes.userId, users.id));
+  const result = await db.select().from(receipes).innerJoin(users, eq(receipes.userId, users.id)).orderBy(desc(receipes.createdAt));
 
   const res = await db.query.users.findFirst({
     where: () => eq(users.email, session.user.email),

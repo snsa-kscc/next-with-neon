@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 function QuestionForm({ user }: { user: string }) {
-  const [data, setData] = useState();
+  const [data, setData] = useState<{ description: string } | undefined>();
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -13,18 +13,18 @@ function QuestionForm({ user }: { user: string }) {
     const formData = new FormData(form);
     const formDataObject = Object.fromEntries(formData);
 
-    const data = await fetch("/api/posts", {
+    const data: { description: string } = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify(formDataObject),
     })
-      .then((res: any) => {
+      .then((res: Response) => {
         if (res.ok) {
           return res.json();
         }
-        throw new Error(res);
+        throw new Error("Something went wrong");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((e: Error) => {
+        console.log(e.message);
       });
 
     setData(data);

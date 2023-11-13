@@ -5,11 +5,35 @@ import { Switch } from "@/components/ui/switch";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-function AdminPanel({ result }: any) {
+interface User {
+  id: string;
+  name: string | null;
+  email: string;
+  emailVerified: Date | null;
+  image: string | null;
+  role: string | null;
+}
+
+interface Recipe {
+  id: number;
+  userId: string;
+  description: string;
+  createdAt: Date;
+  active: boolean | null;
+}
+
+interface ResultItem {
+  user: User;
+  recipe: Recipe;
+}
+
+type ResultArray = ResultItem[];
+
+function AdminPanel({ result }: { result: ResultArray }) {
   // const [data, setData] = useState();
   const router = useRouter();
 
-  async function handleSwitch(id: any, active: boolean) {
+  async function handleSwitch(id: number, active: boolean) {
     const res = await fetch(`/api/posts?query=${id}`, {
       method: "PATCH",
       body: JSON.stringify({ active: !active }),
@@ -19,7 +43,7 @@ function AdminPanel({ result }: any) {
     router.refresh();
   }
 
-  async function handleDelete(id: any) {
+  async function handleDelete(id: number) {
     const res = await fetch(`/api/posts?query=${id}`, {
       method: "DELETE",
     });
@@ -31,12 +55,12 @@ function AdminPanel({ result }: any) {
   return (
     <div>
       <h1>AdminPanel</h1>
-      {result.map((item: any) => (
+      {result.map((item: ResultItem) => (
         <div className="flex p-2 justify-around" key={item.recipe.createdAt.toString()}>
           <p>{item.recipe.description}</p>
           <p>{item.user.name}</p>
           {item.recipe.active === true ? <p>Active</p> : <p>Inactive</p>}
-          <Switch checked={item.recipe.active} onCheckedChange={() => handleSwitch(item.recipe.id, item.recipe.active)} />
+          <Switch checked={item.recipe.active!} onCheckedChange={() => handleSwitch(item.recipe.id, item.recipe.active!)} />
           <Button onClick={() => handleDelete(item.recipe.id)} variant="destructive">
             Delete
           </Button>
