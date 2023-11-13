@@ -13,3 +13,4 @@
 - [x] admin select all posts part
 - [x] ask for name
 - [ ] admin assignment
+- [ ] content editor
