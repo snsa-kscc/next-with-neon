@@ -4,6 +4,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { users, receipes } from "@/db/schema";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
@@ -18,9 +19,9 @@ export async function POST(request: Request) {
       createdAt: new Date(),
     });
 
-    return Response.json({ status: "ok", message: data });
-  } catch (error) {
-    return Response.json({ status: "not ok", message: error });
+    return NextResponse.json(data);
+  } catch (e) {
+    return new NextResponse(JSON.stringify(e), { status: 500 });
   }
 }
 

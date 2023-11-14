@@ -21,7 +21,7 @@ function QuestionForm({ user }: { user: string }) {
         return res.json();
       })
       .catch((e: Error) => {
-        console.log(e.message);
+        console.log(e.message, "|", e.name);
       });
 
     setData(data);
