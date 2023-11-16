@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import { Button } from "./ui/button";
 
 function AuthButton() {
   const { data: session } = useSession();
@@ -9,7 +10,8 @@ function AuthButton() {
     return (
       <>
         {session?.user?.email} <br />
-        <button
+        <Button
+          variant="outline"
           onClick={() =>
             signOut({
               callbackUrl: "/",
@@ -17,17 +19,37 @@ function AuthButton() {
           }
         >
           Sign out
-        </button>
+        </Button>
+        <Langs />
       </>
     );
   } else {
     return (
       <>
         Not signed in <br />
-        <button onClick={() => signIn()}>Sign in</button>
+        <Button variant="outline" onClick={() => signIn()}>
+          Sign in
+        </Button>
+        <Langs />
       </>
     );
   }
+}
+
+function Langs() {
+  return (
+    <div className="flex py-4">
+      <Button className="mx-2" variant="outline">
+        English
+      </Button>
+      <Button className="mx-2" variant="outline">
+        French
+      </Button>
+      <Button className="mx-2" variant="outline">
+        German
+      </Button>
+    </div>
+  );
 }
 
 export default function NavMenu() {

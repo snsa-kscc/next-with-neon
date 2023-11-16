@@ -1,13 +1,13 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import QuestionForm from "../components/QuestionForm";
-import NameForm from "../components/NameForm";
+import QuestionForm from "../../components/QuestionForm";
+import NameForm from "../../components/NameForm";
 
 import { db } from "@/db";
 import { receipes, users } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
-import { formatTimeAgo } from "@/utils/formatTimeAgo";
+import { formatTimeAgo } from "@/lib/formatTimeAgo";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
