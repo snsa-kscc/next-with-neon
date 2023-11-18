@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import AdminPanel from "../../components/AdminPanel";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
+import AdminPanel from "../../../components/AdminPanel";
 
 import { db } from "@/db";
 import { receipes, users } from "@/db/schema";

@@ -2,14 +2,17 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "./ui/button";
+import { Locale } from "@/i18n.config";
+import LocaleSwitcher from "./LocaleSwitcher";
 
-function AuthButton() {
+function AuthButton({ lang }: { lang: Locale }) {
   const { data: session } = useSession();
 
   if (session) {
     return (
       <>
         {session?.user?.email} <br />
+        <pre>{JSON.stringify(lang, null, 2)}</pre>
         <Button
           variant="outline"
           onClick={() =>
@@ -20,42 +23,27 @@ function AuthButton() {
         >
           Sign out
         </Button>
-        <Langs />
+        <LocaleSwitcher />
       </>
     );
   } else {
     return (
       <>
         Not signed in <br />
+        <pre>{JSON.stringify(lang, null, 2)}</pre>
         <Button variant="outline" onClick={() => signIn()}>
           Sign in
         </Button>
-        <Langs />
+        <LocaleSwitcher />
       </>
     );
   }
 }
 
-function Langs() {
-  return (
-    <div className="flex py-4">
-      <Button className="mx-2" variant="outline">
-        English
-      </Button>
-      <Button className="mx-2" variant="outline">
-        French
-      </Button>
-      <Button className="mx-2" variant="outline">
-        German
-      </Button>
-    </div>
-  );
-}
-
-export default function NavMenu() {
+export default function NavMenu({ lang }: { lang: Locale }) {
   return (
     <div>
-      <AuthButton />
+      <AuthButton lang={lang} />
     </div>
   );
 }

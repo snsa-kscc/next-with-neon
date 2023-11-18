@@ -1,15 +1,16 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import QuestionForm from "../../components/QuestionForm";
-import NameForm from "../../components/NameForm";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
+import QuestionForm from "../../../components/QuestionForm";
+import NameForm from "../../../components/NameForm";
 
 import { db } from "@/db";
 import { receipes, users } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { formatTimeAgo } from "@/lib/formatTimeAgo";
+import { Locale } from "@/i18n.config";
 
-export default async function Dashboard() {
+export default async function Dashboard({ params: { lang } }: { params: { lang: Locale } }) {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
@@ -25,6 +26,7 @@ export default async function Dashboard() {
   return (
     <div className="flex-grow">
       <h1>Dashboard</h1>
+      <code>{JSON.stringify(lang, null, 2)}</code>
       {!session.user.name ? (
         <div>
           <p>What is your name?</p>
@@ -32,7 +34,7 @@ export default async function Dashboard() {
         </div>
       ) : null}
       <NameForm></NameForm>
-      <QuestionForm user={session.user.name!} />
+      <QuestionForm user={session.user.name!} lang={lang} />
       <div className="p-8">
         {result
           .filter((item) => item.recipe.active === true || item.user.id === session.user.id)

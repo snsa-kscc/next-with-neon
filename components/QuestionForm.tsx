@@ -1,8 +1,9 @@
 "use client";
+import { Locale } from "@/i18n.config";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-function QuestionForm({ user }: { user: string }) {
+function QuestionForm({ user, lang }: { user: string; lang: Locale }) {
   const [data, setData] = useState();
   const router = useRouter();
 
@@ -12,6 +13,7 @@ function QuestionForm({ user }: { user: string }) {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const formDataObject = Object.fromEntries(formData);
+    const newObj = { ...Object.fromEntries(formData), lang: lang };
 
     const data = await fetch("/api/posts", {
       method: "POST",
