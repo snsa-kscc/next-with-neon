@@ -2,7 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "./ui/button";
-import { Locale } from "@/i18n.config";
+import { Locale, i18n } from "@/i18n.config";
 import LocaleSwitcher from "./LocaleSwitcher";
 
 function AuthButton({ lang }: { lang: Locale }) {
@@ -17,7 +17,7 @@ function AuthButton({ lang }: { lang: Locale }) {
           variant="outline"
           onClick={() =>
             signOut({
-              callbackUrl: "/",
+              callbackUrl: i18n.defaultLocale === lang ? "/" : `/${lang}`,
             })
           }
         >
