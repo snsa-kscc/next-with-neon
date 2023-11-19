@@ -12,8 +12,8 @@ function QuestionForm({ user, lang }: { user: string; lang: Locale }) {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const formDataObject = Object.fromEntries(formData);
-    const newObj = { ...Object.fromEntries(formData), lang: lang };
+    // const formDataObject = Object.fromEntries(formData);
+    const formDataObject = { ...Object.fromEntries(formData), lang: lang };
 
     const data = await fetch("/api/posts", {
       method: "POST",

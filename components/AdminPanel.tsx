@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import { Locale } from "@/i18n.config";
 import { useRouter } from "next/navigation";
 
 interface User {
@@ -19,6 +20,7 @@ interface Recipe {
   description: string;
   createdAt: Date;
   active: boolean | null;
+  lang: Locale;
 }
 
 interface ResultItem {
@@ -58,6 +60,7 @@ function AdminPanel({ result }: { result: ResultArray }) {
         <div className="flex p-2 justify-around" key={item.recipe.createdAt.toString()}>
           <p>{item.recipe.description}</p>
           <p>{item.user.name}</p>
+          <p>{item.recipe.lang}</p>
           {item.recipe.active === true ? <p>Active</p> : <p>Inactive</p>}
           <Switch checked={item.recipe.active!} onCheckedChange={() => handleSwitch(item.recipe.id, item.recipe.active!)} />
           <Button onClick={() => handleDelete(item.recipe.id)} variant="destructive">

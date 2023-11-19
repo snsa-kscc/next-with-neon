@@ -1,0 +1,1 @@
+ALTER TABLE "recipe" ALTER COLUMN "lang" SET NOT NULL;

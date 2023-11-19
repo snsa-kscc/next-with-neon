@@ -5,18 +5,24 @@ import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { users, receipes } from "@/db/schema";
 import { NextResponse } from "next/server";
+import { Locale } from "@/i18n.config";
+
+interface Post {
+  description: string;
+  lang: Locale;
+}
 
 export async function POST(request: Request) {
   try {
-    const data: { description: string } = await request.json();
+    const data: Post = await request.json();
     const session: { user: { email: string } } | null = await getServerSession(authOptions);
-
     const userId: { id: string }[] = await db.selectDistinct({ id: users.id }).from(users).where(eq(users.email, session?.user.email!));
 
     await db.insert(receipes).values({
       userId: userId[0].id,
       description: data.description,
       createdAt: new Date(),
+      lang: data.lang,
     });
 
     return NextResponse.json(data);

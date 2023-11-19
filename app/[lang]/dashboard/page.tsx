@@ -17,7 +17,12 @@ export default async function Dashboard({ params: { lang } }: { params: { lang: 
     redirect("/api/auth/signin");
   }
 
-  const result = await db.select().from(receipes).innerJoin(users, eq(receipes.userId, users.id)).orderBy(desc(receipes.createdAt));
+  const result = await db
+    .select()
+    .from(receipes)
+    .innerJoin(users, eq(receipes.userId, users.id))
+    .where(eq(receipes.lang, lang))
+    .orderBy(desc(receipes.createdAt));
 
   const res = await db.query.users.findFirst({
     where: () => eq(users.email, session.user.email),

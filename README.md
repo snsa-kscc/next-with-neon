@@ -8,9 +8,9 @@
 - [x] route api
 - [x] frotend form
 - [x] admin
-- [ ] route api error handling
-- [ ] internationalization
+- [x] internationalization
 - [x] admin select all posts part
 - [x] ask for name
+- [ ] route api error handling
 - [ ] admin assignment
 - [ ] content editor

@@ -1,4 +1,4 @@
-import { timestamp, pgTable, text, primaryKey, integer, boolean, serial } from "drizzle-orm/pg-core";
+import { timestamp, pgTable, text, primaryKey, integer, boolean, serial, pgEnum } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 import { relations } from "drizzle-orm";
 
@@ -53,6 +53,8 @@ export const verificationTokens = pgTable(
   })
 );
 
+export const moodEnum = pgEnum("lang", ["en", "de", "fr"]);
+
 export const receipes = pgTable(
   "recipe",
   {
@@ -63,6 +65,7 @@ export const receipes = pgTable(
     description: text("description").notNull(),
     createdAt: timestamp("createdAt", { mode: "date" }).notNull(),
     active: boolean("active").default(false),
+    lang: moodEnum("lang").notNull(),
   },
   (recipe) => ({
     compoundKey: primaryKey(recipe.userId, recipe.description),
