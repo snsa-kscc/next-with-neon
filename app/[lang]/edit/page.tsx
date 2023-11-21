@@ -13,6 +13,9 @@ type formProps = {
 async function EditPage({ params: { lang } }: { params: { lang: Locale } }) {
   const data = await db.select().from(contents);
 
+  const fetchData = await fetch("https://welcomebook-admin.lin62.host25.com/wp-json/wp/v2/pages/66");
+  const { acf } = await fetchData.json();
+
   async function postData(formInputs: FormData) {
     "use server";
 
@@ -43,6 +46,7 @@ async function EditPage({ params: { lang } }: { params: { lang: Locale } }) {
           <hr />
         </div>
       ))}
+      <pre>{JSON.stringify(data[1], null, 2)}</pre>
     </div>
   );
 }
