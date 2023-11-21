@@ -82,3 +82,12 @@ export const recipeRelations = relations(receipes, ({ one }) => ({
     references: [users.id],
   }),
 }));
+
+export const contents = pgTable("content", {
+  id: serial("id").notNull().primaryKey(),
+  title: text("title").notNull(),
+  lang: moodEnum("lang").notNull(),
+  description_1: text("description_1"),
+  description_2: text("description_2"),
+  description_3: text("description_3"),
+});
