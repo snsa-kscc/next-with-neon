@@ -14,3 +14,5 @@
 - [ ] route api error handling
 - [ ] admin assignment
 - [ ] content editor
+
+![messagelizer](https://github.com/snsa-kscc/messagelizer/assets/51080349/5941d337-a378-4469-a0a4-c3f516d60149)
