@@ -1,6 +1,6 @@
 # messagelizer app
 
-Proof of concept app for a future client featuring latest and greatest Next.js 14 features at the moment of writing.
+Proof of concept app for a future client featuring latest and greatest Next.js 14 features at the moment of writing (fall 2023).
 
 ![messagelizer](https://github.com/snsa-kscc/messagelizer/assets/51080349/5941d337-a378-4469-a0a4-c3f516d60149)
 
