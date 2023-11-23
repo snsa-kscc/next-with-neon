@@ -13,8 +13,8 @@ Proof of concept app for a future client featuring latest and greatest Next.js 1
 - i18n internationalization
 - shadcn
 - middleware functions
-- Typescript
-- Tailwindcss
+- TypecSript
+- TailwindCSS
 
 ## 2DO
 
