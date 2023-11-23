@@ -9,7 +9,7 @@ Proof of concept app for a future client featuring latest and greatest Next.js 1
 - Next.js 14 app router, server components, server actions, API routes
 - Drizzle ORM
 - Neon PostgreSQL
-- NexAuth
+- NextAuth
 - i18n internationalization
 - shadcn
 - middleware functions
